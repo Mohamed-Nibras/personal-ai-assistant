@@ -1,6 +1,10 @@
+# First version Day: 05-07-2026
+# Last worked on 11-07-2026
+
+from modules import notes
 import shutil
 width = shutil.get_terminal_size().columns
-    
+
 def show_welcome():
     
     print("=" * width)
@@ -10,9 +14,10 @@ def show_welcome():
 
 def show_menu(name):
         print(f"\nWhat do you want me to do {name}?")
-        print("1. Sample 1")
-        print("2. Sample 2")
-        print("3. Exit")
+        print("- Notes")
+        print("- Help")
+        print("- Exit")
+        
 
 def run_assistant():
     show_welcome()
@@ -21,16 +26,10 @@ def run_assistant():
 
     while True:
         show_menu(name)
-        while True:
-            try:
-                command = int(input(" > "))
-                break
-
-            except ValueError:
-                print("Enter the correct option")
+        command = (input("\n > ")).lower()
 
         
-        if command != 3:
+        if command != "exit":
             process_command(command)
 
         else:
@@ -40,12 +39,19 @@ def run_assistant():
 def process_command(command):
     print(f"\nSure, processing your command <{command}>")
 
-    if command == 1:
-        print(f"\nYour command completed <Sample 1>")
-    
-    elif command == 2:
-        print(f"\nYour command completed <Sample 2>")
+    if command == "help":
+        show_help()
+
+    elif command == "notes":
+        notes.run_notes_manager()
+    else:
+        print(f"\nUnknown command")
+
+def show_help():
+    print("\nAVAILABLE COMMANDS: \n")
+    print("- Notes")
+    print("- Help")
+    print("- Exit")
 
 def show_goodbye():
     print("\nBye")
-
