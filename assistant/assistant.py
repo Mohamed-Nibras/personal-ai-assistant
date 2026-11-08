@@ -1,16 +1,13 @@
-# First version Day: 05-07-2026
-# Last worked on 11-07-2026
+# First version Day: 5/07/2026
+# Last worked on 8/11/2026
 
 from modules import notes
-import shutil
-width = shutil.get_terminal_size().columns
+from assistant import display_heading, display_subheading, display_message
 
 def show_welcome():
     
-    print("=" * width)
-    print("PERSONAL AI ASSISTANT".center(width))
-    print("=" * width)
-    print()
+    display_heading("PERSONAL AI ASSISTANT")
+
 
 def show_menu(name):
         print(f"\nWhat do you want me to do {name}?")
@@ -26,7 +23,7 @@ def run_assistant():
 
     while True:
         show_menu(name)
-        command = (input("\n > ")).lower()
+        command = (input("\n > ")).lower().strip()
 
         
         if command != "exit":
@@ -37,21 +34,22 @@ def run_assistant():
             break
 
 def process_command(command):
-    print(f"\nSure, processing your command <{command}>")
 
     if command == "help":
+        display_message([f"Sure, processing your command <{command}>"])
         show_help()
 
     elif command == "notes":
+        display_message([f"Sure, processing your command <{command}>"])
         notes.run_notes_manager()
     else:
-        print(f"\nUnknown command")
+        display_message([f"Unknown command"])
 
 def show_help():
-    print("\nAVAILABLE COMMANDS: \n")
+    display_subheading(["AVAILABLE COMMANDS:"])
     print("- Notes")
     print("- Help")
     print("- Exit")
 
 def show_goodbye():
-    print("\nBye")
+    display_message(["Bye"])
