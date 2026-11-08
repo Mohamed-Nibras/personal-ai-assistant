@@ -1,5 +1,5 @@
-# First version Day: 05-07-2026
-# Last worked on 11-07-2026
+# First version Day: 5/07/2026
+# Last worked on 8/11/2026
 
 from assistant import assistant
 
